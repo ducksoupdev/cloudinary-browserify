@@ -1,0 +1,35 @@
+{
+  "name": "cloudinary-browserify",
+  "version": "0.1.0",
+  "description": "",
+  "scripts": {
+    "clean-dist": "node ./node_modules/.bin/cleandir ./dist",
+    "mkdir-dist": "node ./node_modules/.bin/mkdirp ./dist",
+    "build": "npm run clean-dist && npm run mkdir-dist && npm run bsfy && npm run uglify && npm run processhtml",
+    "processhtml": "node ./node_modules/.bin/htmlprocessor ./src/index.html -o ./dist/index.html",
+    "bsfy": "node ./node_modules/.bin/browserify ./src/main.js > ./src/bundle.js",
+    "uglify": "node ./node_modules/.bin/uglifyjs ./src/bundle.js -o ./dist/bundle.min.js --source-map ./dist/bundle.min.js.map --source-map-url bundle.min.js.map --compress --mangle"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ducksoupdev/cloudinary-browserify.git"
+  },
+  "author": "Matt Levy <ducksoupdev@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ducksoupdev/cloudinary-browserify/issues"
+  },
+  "homepage": "https://github.com/ducksoupdev/cloudinary-browserify",
+  "devDependencies": {
+    "browserify": "^9.0.3",
+    "clean-dir": "^1.0.3",
+    "htmlprocessor": "^0.1.10",
+    "mkdirp": "^0.5.0",
+    "uglify-js": "^2.4.17"
+  },
+  "dependencies": {
+    "q": "^1.2.0",
+    "sha1": "^1.1.0",
+    "superagent": "^1.1.0"
+  }
+}
